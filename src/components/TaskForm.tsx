@@ -11,7 +11,7 @@ interface Props {
 
 // destructuring on Props...
 const TaskForm = ({ btnText, tasks, setTasks }: Props) => {
-  const [id, setId] = useState<number>(0);
+  // const [id, setId] = useState<number>(0);
   const [title, setTitle] = useState<string>("");
   const [difficulty, setDifficulty] = useState<number>(0);
 
@@ -62,6 +62,15 @@ const TaskForm = ({ btnText, tasks, setTasks }: Props) => {
           onChange={handleChange}
         />
       </div>
+      {/* <div className={styles.inputContainer}>
+        <label htmlFor="difficulty">Selecione a dificuldade...</label>
+        <select name="difficulty" value={difficulty} onChange={handleChange}>
+          <option value="">Escolha uma opção...</option>
+          <option value="easy">Fácil</option>
+          <option value="medium">Média</option>
+          <option value="hard">Dificil</option>
+        </select>
+      </div> */}
       <input type="submit" value={btnText} />
     </form>
   );
