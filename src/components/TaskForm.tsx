@@ -8,10 +8,11 @@ interface Props {
   tasks: ITask[];
   setTasks?: React.Dispatch<React.SetStateAction<ITask[]>>;
   task?: ITask | null;
+  handleUpdate?(id: number, title: string, difficulty: number): void;
 }
 
 // destructuring on Props...
-const TaskForm = ({ btnText, tasks, setTasks, task }: Props) => {
+const TaskForm = ({ btnText, tasks, setTasks, task, handleUpdate }: Props) => {
   const [id, setId] = useState<number>(0);
   const [title, setTitle] = useState<string>("");
   const [difficulty, setDifficulty] = useState<number>(0);
@@ -27,22 +28,24 @@ const TaskForm = ({ btnText, tasks, setTasks, task }: Props) => {
   const addTaskHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const id = Math.floor(Math.random() * 500);
-    const newTask: ITask = { id, title, difficulty };
-
-    if (title.length > 0 && difficulty > 0) {
-      setTasks!([...tasks, newTask]);
+    if (handleUpdate) {
+      handleUpdate(id, title, difficulty);
     } else {
-      console.log("Favor preencher todos os campos!");
+      const id = Math.floor(Math.random() * 500);
+      const newTask: ITask = { id, title, difficulty };
+
+      if (title.length > 0 && difficulty > 0) {
+        setTasks!([...tasks, newTask]);
+      } else {
+        console.log("Favor preencher todos os campos!");
+        setTitle("");
+        setDifficulty(0);
+        return;
+      }
+
       setTitle("");
       setDifficulty(0);
-      return;
     }
-
-    console.log(tasks);
-
-    setTitle("");
-    setDifficulty(0);
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
