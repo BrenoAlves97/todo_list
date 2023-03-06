@@ -1,12 +1,31 @@
 import styles from "./TaskList.module.css";
 
-interface Props {}
+import { ITask } from "../interfaces/Task";
+import { BsFillPencilFill } from "react-icons/bs";
+import { BsFillTrashFill } from "react-icons/bs";
 
-const TaskList = (props: Props) => {
+interface Props {
+  tasks: ITask[];
+}
+
+const TaskList = ({ tasks }: Props) => {
   return (
-    <div>
-      <h2>Lista de tarefas...</h2>
-    </div>
+    <>
+      {tasks.length > 0
+        ? tasks.map((task, index) => (
+            <div key={task.id} className={styles.task}>
+              <div className={styles.details}>
+                <h4>{task.title}</h4>
+                <p>Dificuldade: {task.difficulty}</p>
+              </div>
+              <div className={styles.actions}>
+                <BsFillPencilFill className={styles.icon} />
+                <BsFillTrashFill className={styles.icon} />
+              </div>
+            </div>
+          ))
+        : "Não possui tarefas cadastradas..."}
+    </>
   );
 };
 

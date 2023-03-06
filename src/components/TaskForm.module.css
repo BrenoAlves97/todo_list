@@ -1,0 +1,46 @@
+.form {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.form input {
+  padding: 8px 15px;
+  border-radius: 0.2em;
+  margin-bottom: 1.5em;
+  border: 2px solid #282c34;
+  opacity: 0.8;
+}
+
+.form input:hover {
+  opacity: 1;
+}
+
+.form input[type="submit"] {
+  background: #61dafb;
+  border: 2px solid #61dafb;
+  color: #000;
+  transition: 0.5s;
+  opacity: 0.8;
+  cursor: pointer;
+  font-weight: bolder;
+}
+
+.form input[type="submit"]:hover {
+  background: #fff;
+  border-color: #282c34;
+  opacity: 1;
+}
+
+.inputContainer {
+  display: flex;
+  text-align: left;
+  flex-direction: column;
+  gap: 0.2em;
+}
+
+.inputContainer {
+  font-weight: bold;
+}
